@@ -1,0 +1,486 @@
+<head>
+  <title>非诚勿扰</title>
+</head>
+
+<body>
+  {{renderPage}}
+</body>
+
+ <template name="login">
+    <div class="all-screen login-all-screen">
+      <form action="" class="create">
+      <div class="login-form-box">
+        <img class="login-title-img" src="title.png" alt="" />
+        <div class="login-box-row login-first-row">
+          <label for="account">账户:</label>
+          <input type="text" id="account"/>
+        </div>
+        <div class="login-box-row login-second-row">
+          <label for="password">密码:</label>
+          <input type="password" id="password"/>
+        </div>
+        <div class="login-box-btn login-three-row">
+          <input class="btn" type="submit" value="登录"/>
+          <a href="register">注册</a>
+        </div>
+    </div>
+    <div class="footer">
+      <div class="footer-row">
+        <span>技术指导:梁广彬&nbsp黄浩松</span>
+        <span>艺术指导:李嘉文&nbsp莫楚欣</span>
+        <span>策划指导:缪婷婷&nbsp李嘉文</span>
+      </div>
+      <div class="footer-row">
+        <span>版权所有:华南农业大学&nbspHCI工作室</span>
+        <span>联系方式:noonnightstorm@gmail.com</span>
+      </div>
+    </div>
+  </form>
+</div>
+</template>
+
+  <template name="register">
+    <div class="all-screen login-all-screen register-all-screen">
+      <form action="" class="create">
+        <div class="login-form-box">
+          <img class="register-title-img" src="../register-btn.png" alt="" />
+          <div class="login-box-row register-first-row">
+            <label for="account">账户:</label>
+            <input id="account" type="text" name="account" onblur="UserHandler.examine()"/>
+            <label for="" id="tips"></label>
+          </div>
+          <div class="login-box-row register-second-row">
+            <label for="password">密码:</label>
+            <input id="password" type="password" name="password"/>
+          </div>
+          <div class="login-box-row register-three-row">
+            <label for="name">姓名:</label>
+            <input id="name" type="text" name="name"/>
+          </div>
+          <div class="login-box-row register-four-row">
+            <label for="">性别:</label>
+            <label for="male">男</label>
+            <input type="radio" id="male" value="male" name="gender"/>
+            <label for="female">女</label>
+            <input type="radio" id="female" value="female" name="gender"/>
+            <a href="/">已注册</a>
+          </div>
+          <div class="login-box-btn register-five-row">
+            <input class="btn" type="submit" value="注册" name="submit"/>
+            <input class="btn" type="reset" value="重置"/>
+          </div>
+        </div>
+      </form>
+      <div class="footer">
+        <div class="footer-row">
+          <span>技术指导:梁广彬&nbsp黄浩松</span>
+          <span>艺术指导:李嘉文&nbsp莫楚欣</span>
+          <span>策划指导:缪婷婷&nbsp李嘉文</span>
+        </div>
+        <div class="footer-row">
+          <span>版权所有:华南农业大学&nbspHCI工作室</span>
+          <span>联系方式:noonnightstorm@gmail.com</span>
+        </div>
+      </div>
+    </div>
+ </template>
+
+ <template name="gameHall">
+  <div class="all-screen game-hall-screen">
+      <div class="hallheader">
+        <div class="hall-person-info">
+          {{#if checkGender "male"}}
+          <img class="hall-avatar-image" src="../avatar-male.png" alt="" />
+          {{else}}
+          <img class="hall-avatar-image" src="../avatar-female.png" alt="" />
+          {{/if}}
+          <div class="hall-info-row hall-info-first-row">
+            <label for="">昵称:</label>
+            <span>{{username}}</span>
+          </div>
+          <div class="hall-info-row hall-info-second-row">
+            <label for="">性别:</label>
+            <span>{{gender}}</span>
+          </div>
+        </div>
+      <div class="hall-props-nav">
+        <ul class="hall-props-nav-ul">
+          <li class="hall-props-nav-li create-room-li">
+            <a href="" onmouseover="objOver('nav-create-room','nav-create-room-light')" onmouseout="objOut('nav-create-room','nav-create-room-light')">
+              <img class="hall-nav-btn-image" id="nav-create-room" src="../nav-create-room.png" alt=""/>
+              <img class="hall-nav-btn-image-light" id="nav-create-room-light" src="../nav-create-room-light.png" alt="" />
+              <p class="hall-nav-tips"><strong>创建房间</strong></p>
+            </a>
+          </li>
+          <li class="hall-props-nav-li tool-room-li">
+            <a href="" onmouseover="objOver('nav-shopping','nav-shopping-light')" onmouseout="objOut('nav-shopping','nav-shopping-light')">
+              <img class="hall-nav-btn-image" id="nav-shopping" src="../nav-shopping.png" alt="" />
+              <img class="hall-nav-btn-image-light" id="nav-shopping-light" src="../nav-shopping-light.png" alt="" />
+              <p class="hall-nav-tips"><strong>道具商城</strong></p>
+            </a>
+          </li>
+          <li class="hall-props-nav-li bordcast-room-li">
+            <a href="" onmouseover="objOver('nav-broadcast','nav-broadcast-light')" onmouseout="objOut('nav-broadcast','nav-broadcast-light')">
+              <img class="hall-nav-btn-image" id="nav-broadcast" src="../nav-broadcast.png" alt="" />
+              <img class="hall-nav-btn-image-light" id="nav-broadcast-light" src="../nav-broadcast-light.png" alt="" />
+              <p class="hall-nav-tips"><strong>广播世界</strong></p>
+            </a>
+          </li>
+          <li class="hall-props-nav-li personal-room-li">
+            <a href="" onmouseover="objOver('nav-personal','nav-personal-light')" onmouseout="objOut('nav-personal','nav-personal-light')">
+              <img class="hall-nav-btn-image" id="nav-personal" src="../nav-personal.png" alt="" />
+              <img class="hall-nav-btn-image-light" id="nav-personal-light" src="../nav-personal-light.png" alt="" />
+              <p class="hall-nav-tips"><strong>个人信息</strong></p>
+            </a>
+          </li>
+          <li class="hall-props-nav-li">
+            <a href="" onmouseover="objOver('nav-exit','nav-exit-light')" onmouseout="objOut('nav-exit','nav-exit-light')">
+              <img class="hall-nav-btn-image" id="nav-exit" src="../nav-exit.png" alt="" />
+              <img class="hall-nav-btn-image-light" id="nav-exit-light" src="../nav-exit-light.png" alt="" />
+              <p class="hall-nav-tips"><strong>注销登录</strong></p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="hall-main">
+      <div class="hall-room-list">
+        <ul class="hall-room-list-ul" id="hall-room-list-ul">
+          {{#each room}}
+          <li class="hall-room-list-li" >
+            <a href="" onmouseover="objOver('room{{count}}','room{{count}}-light')" onmouseout="objOut('room{{count}}','room{{count}}-light')" >
+              <img class="hall-room-item" id="room{{count}}" src="../room-item.png" alt="#"/>
+              <img class="hall-room-item-light" id="room{{count}}-light" src="../room-item-light.png" alt="#"/>
+              <div class="hall-room-info-row">房间名字:{{name}}</div>
+              <div class="hall-room-info-row">
+                创建人:{{owner.ownerName}}
+              </div>
+              <div class="hall-room-info-row">
+                <span class="hall-num">人数:{{num}}</span>
+                <button class="hall-enter-btn" value="{{_id}}">进入</button>
+              </div>
+            </a>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="hall-content">
+
+        <!-- 游戏规则 -->
+        <div class="hall-nav-item" id="rule">
+          <div class="hall-left-block">
+            <img src="../game-rule.png" alt="" />
+          </div>
+          <div class="hall-right-block">
+            <h1 class="hall-rule-font hall-rule-title">游戏规则</h1>
+            <h2 class="hall-rule-font hall-rule-tips">
+              Part One
+            </h2>
+            <p class="hall-rule-font hall-rule-item">进入房间</p>
+            <p class="hall-rule-font hall-rule-item">男生自我介绍</p>
+            <p class="hall-rule-font hall-rule-item">女生亮灭灯</p>
+            <h2 class="hall-rule-font hall-rule-tips">
+              Part Two
+            </h2>
+            <p class="hall-rule-font hall-rule-item">女生轮流跟男主角对话</p>
+            <p class="hall-rule-font hall-rule-item">女生亮灭灯</p>
+            <p class="hall-rule-font hall-rule-item">男生的深层介绍</p>
+            <p class="hall-rule-font hall-rule-item">女生亮灭灯</p>
+            <h2 class="hall-rule-font hall-rule-tips">
+              Part Three
+            </h2>
+            <p class="hall-rule-font hall-rule-item">男生权利</p>
+            <p class="hall-rule-font hall-rule-item">牵手成功，互相交换联系方式</p>
+          </div>
+        </div>
+
+        <!-- 创造房间 -->
+        <div class="hall-nav-item" id="create">
+           <!-- change here -->
+          {{#if checkGender "male"}}
+          <form action="" class="create-room">
+            <!-- <div class="hall-create-info">
+              <label for="">房间名字</label>
+              <input type="text" name="roomName">
+            </div>
+            <div class="hall-create-info">
+              <input type="submit" value="创建房间">
+            </div> -->
+            <div class="hall-create-box">
+              <div class="create-room-row">
+                <label for="room-name">创建房间:</label>
+                <input type="text" placeholder="房间名字" class="create-room-name" id="create-room-name" name="roomName"/>
+              </div>
+              <button class="create-room-btn">创建房间</button>
+            </div>
+          </form>
+          {{/if}}
+          {{#if checkGender "female"}}
+          <img src="../female-tips.png" alt="" class="hall-female-create" />
+          {{/if}}
+        </div>
+
+        <!-- 道具时间 -->
+        <div class="hall-nav-item" id="tool">
+          <div class="hall-tool-row">
+            <div class="hall-tool-item">
+              <img src="../tool-egg.png" alt="" class="hall-tool-img" />
+              <span class="hall-tool-info">道具:鸡蛋</span>
+              <span class="hall-tool-info">功能:可以任意调节发言的顺序</span>
+              <span class="hall-tool-info">钻石指数:1星</span>
+              <button class="hall-tool-btn">免费试用</button>
+            </div>
+            <div class="hall-tool-item">
+              <img src="../tool-flower.png" alt="" class="hall-tool-img" />
+              <span class="hall-tool-info">道具:鲜花</span>
+              <span class="hall-tool-info">功能:隐藏自己我个人资料</span>
+              <span class="hall-tool-info">钻石指数:1星</span>
+              <button class="hall-tool-btn">免费试用</button>
+            </div>
+          </div>
+           <!--<div class="hall-tool-row">
+            <div class="hall-tool-item">
+              <img src="../tool02.png" alt="" class="hall-tool-img" />
+              <span class="hall-tool-info">道具:抗议道具</span>
+              <span class="hall-tool-info">功能:打断别人说话</span>
+              <span class="hall-tool-info">钻石指数:5星</span>
+              <button class="hall-tool-btn">没开放</button>
+            </div>
+          </div> -->
+        </div>
+
+        <!-- 广播世界 -->
+        <div class="hall-nav-item" id="bordcast">
+          <div class="hall-bordcast-box">
+            <h1 class="hall-bordcast-title">广播世界</h1>
+            {{#each couple}}
+              <div class="hall-bordcast-info-row">
+              [广播]:热烈庆祝{{room_name}}房间的{{male_name}}和{{female_name}}牵手成功，祝愿永结同心，白头偕老！
+            </div>
+            {{/each}}
+          </div>
+        </div>
+
+        <!-- 个人信息 -->
+        <div class="hall-nav-item" id="personal">
+          <form action="" class="hall-personal-form">
+            <div class="hall-personal-row">
+              <label for="realName">真实姓名:</label>
+              <input type="text" name="realName" id="realName">
+            </div>
+            <div class="hall-personal-row">
+              <label for="telPhone">固定电话:</label>
+              <input type="text" name="telPhone" id="telPhone">
+            </div>
+            <div class="hall-personal-row">
+              <label for="mobilePhone">手机号码:</label>
+              <input type="text" name="mobilePhone" id="mobilePhone">
+            </div>
+            <div class="hall-personal-row">
+              <label for="standard">择偶标准:</label>
+              <textarea name="standard" id="standard" cols="23" rows="7"></textarea>
+            </div>
+            <div class="hall-personal-row">
+              <label for="declaration">爱情宣言:</label>
+              <textarea name="declaration" id="declaration" cols="23" rows="7"></textarea>
+            </div>
+            <div class="hall-btn-row">
+              <input type="submit" value="提交" class="btn">
+              <input type="reset" value="重置" class="btn">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+      <div class="footer-row">
+        <span>技术指导:梁广彬&nbsp黄浩松</span>
+        <span>艺术指导:李嘉文&nbsp莫楚欣</span>
+        <span>策划指导:缪婷婷&nbsp李嘉文</span>
+      </div>
+      <div class="footer-row">
+        <span>版权所有:华南农业大学&nbspHCI工作室</span>
+        <span>联系方式:noonnightstorm@gmail.com</span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="gameRoom">
+  <div class="all-screen game-room-screen">
+     <div class="room-header">
+      <span>房间:{{roomName}}</span>
+      {{#if tips 0}}
+        {{#if checkGender "male"}}
+        <button class="room-begin-game">开始游戏</button>
+        {{else}}
+        <span>提示:请耐心等待游戏开始...</span>
+        {{/if}}
+      {{/if}}
+      {{#if tips 1}}
+      <span>提示:男嘉宾10秒的自我介绍</span>
+      {{/if}}
+      {{#if tips 2}}
+      <span>提示:请女嘉宾亮灭灯</span>
+      {{/if}}
+      {{#if tips 3}}
+      <span>提示:各位女嘉宾有5秒跟男嘉宾交流的机会</span>
+      {{/if}}
+      {{#if tips 4}}
+      <span>提示:请女嘉宾亮灭灯</span>
+      {{/if}}
+      {{#if tips 5}}
+      <span>提示:男嘉宾深层自我推荐</span>
+      {{/if}}
+      {{#if tips 6}}
+      <span>提示:请女嘉宾亮灭灯</span>
+      {{/if}}
+      {{#if tips 7}}
+      <span>提示:男嘉宾权利，选择心动的女嘉宾</span>
+      {{/if}}
+      {{#if tips 8}}
+      <span>提示:请退出游戏</span>
+      {{/if}}
+    </div>
+    <div class="room-main">
+      <div class="room-props-box">
+        <ul class="room-props-box-ul">
+          <li class="room-prop-box-li">
+            <a href="" onmouseover="objOver('choice-speak','choice-speak-light')" onmouseout="objOut('choice-speak','choice-speak-light')">
+              <img class="room-prop-item" id="choice-speak" src="../choice-speak.png" alt="" />
+              <img class="room-prop-item-light" id="choice-speak-light" src="../choice-speak-light.png" alt="" onclick="Person.showPerson()" />
+            </a>
+          </li>
+          <!-- {{#if contact}}
+          <li class="room-prop-box-li room-box-li-contant" id="room-contant-box">
+            <p>恭喜你:</p>
+            <p>（请点击）</p>
+            <button class="room-light-btn room-contant">联系方式</button>
+          </li>
+          {{/if}} -->
+          <li class="room-prop-box-li">
+            <a href="" onmouseover="objOver('choice-light','choice-light-light')" onmouseout="objOut('choice-light','choice-light-light')">
+              <img class="room-prop-item" id="choice-light" src="../choice-light.png" alt="" />
+              <img class="room-prop-item-light" id="choice-light-light" src="../choice-light-light.png" alt="" />
+            </a>
+          </li>
+<!--           {{#if Showlight}}
+          <li class="room-prop-box-li room-box-li-light" id="room-light-box">
+            <span>是否灭灯:</span>
+            <button class="room-light-btn room-unlight">是</button>
+            <button class="room-light-btn room-light">否</button>
+          </li>
+          {{/if}} -->
+          <li class="room-prop-box-li">
+            <a href="" onmouseover="objOver('choice-flower','choice-flower-light')" onmouseout="objOut('choice-flower','choice-flower-light')">
+              <img class="room-prop-item" id="choice-flower" src="../choice-flower.png" alt="" />
+              <img class="room-prop-item-light" id="choice-flower-light" src="../choice-flower-light.png" alt="" />
+            </a>
+          </li>
+          <li class="room-prop-box-li">
+            <a href="" onmouseover="objOver('choice-egg','choice-egg-light')" onmouseout="objOut('choice-egg','choice-egg-light')">
+              <img class="room-prop-item" id="choice-egg" src="../choice-egg.png" alt="" />
+              <img class="room-prop-item-light" id="choice-egg-light" src="../choice-egg-light.png" alt="" />
+            </a>
+          </li>
+          <li class="room-prop-box-li room-prop-box-light">
+            <a href="" onmouseover="objOver('choice-exit','choice-exit-light')" onmouseout="objOut('choice-exit','choice-exit-light')">
+              <img class="room-prop-item" id="choice-exit" src="../choice-exit.png" alt="" />
+              <img class="room-prop-item-light" id="choice-exit-light" src="../choice-exit-light.png" alt="" />
+            </a>
+          </li>
+        </ul>
+        <div class="room-contant-box" id="room-contant-box">
+          <!-- <div class="room-contant-item">
+            <img src="../avatar-male.png" alt="" class="room-contant-item-avatar">
+            <span class="room-contant-item-name">Storm</span>
+          </div> -->
+          {{#each person}}
+            <div class="room-contant-item">
+              {{#if gender "male"}}
+              <img src="../avatar-male.png" alt="" class="room-contant-item-avatar">
+              {{else}}
+              <img src="../avatar-female.png" alt="" class="room-contant-item-avatar">
+              {{/if}}
+              <button class="room-contant-item-btn" value="{{_id}}">{{name}}</button>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+      <div class="room-people-box">
+        {{#each guest}}
+          {{#if gender "male"}}
+          <div class="room-people room-people-male">
+            <img class="room-people-avatar" src="../avatar-male.png" alt="" />
+            {{#if maleSaying}}
+              <div class="room-topic" id="male">
+                <span class="room-topic-content">
+                  {{maleContent}}
+                </span>
+              </div>
+            {{/if}}
+            <div class="room-name">男嘉宾:{{roomOwner}}</div>
+          </div>
+          {{else}}
+            <div class="room-people room-people-female{{turn}}">
+              <img class="room-people-avatar" src="../avatar-female.png" alt="" />
+              {{#if light}}
+                {{#if flag}}
+                  <div class="room-topic" id="female{{turn}}">
+                    <span class="room-topic-content">
+                      {{femaleContent}}
+                    </span>
+                  </div>
+                {{/if}}
+              {{/if}}
+              <div class="room-name">女嘉宾:{{name}}</div>
+              {{#if choice _id}}
+              <div class="room-choice">
+                <button class="room-light-btn room-choice-btn" id="room-choice-btn" value="{{_id}}">Lover</button>
+              </div>
+              {{/if}}
+              {{#if light}}
+              {{else}}
+              <div class="room-result-tips">已灭灯</div>
+              {{/if}}
+            </div>
+          {{/if}}
+        {{/each}}
+      </div>
+      {{#if dialog}}
+      <div class="room-people-dialog" id="chart">
+        <input class="room-people-dialog-input" type="text" id="content"/>
+        <button class="room-dialog-btn" id="submit">发送</button>
+      </div>
+      {{/if}}
+    </div> 
+  </div>
+</template>
+
+<template name="gameSuccess">
+  <div class="all-screen success-all-screen">
+    <div class="success-header">祝君永结同心，白头到老！</div>
+    <div class="success-main">
+      <div class="success-info-card left">
+        <span class="success-info-row">昵称:{{maleNickName}}</span>
+        <span class="success-info-row">真名:{{maleRealName}}</span>
+        <span class="success-info-row">性别：{{maleGender}}</span>
+        <span class="success-info-row">固定电话:{{maleTelPhone}}</span>
+        <span class="success-info-row">移动电话:{{maleMobilePhone}}</span>
+        <span class="success-info-row">择偶标准:{{maleStandard}}</span>
+        <span class="success-info-row">爱情宣言:{{maleDeclaration}}</span>
+      </div>
+      <div class="success-info-card right">
+        <span class="success-info-row">昵称:{{femaleNickName}}</span>
+        <span class="success-info-row">真名:{{femaleRealName}}</span>
+        <span class="success-info-row">性别：{{femaleGender}}</span>
+        <span class="success-info-row">固定电话:{{femaleTelPhone}}</span>
+        <span class="success-info-row">移动电话:{{femaleMobilePhone}}</span>
+        <span class="success-info-row">择偶标准:{{femaleStandard}}</span>
+        <span class="success-info-row">爱情宣言:{{femaleDeclaration}}</span>
+      </div>
+    </div>
+    <button class="success-back-btn">返回大厅</button>
+  </div>
+</template>
