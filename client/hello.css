@@ -477,6 +477,7 @@ a img{
 	float: left;
 	width: 75px;
 	height: 600px;
+	z-index: 1;
 }
 .room-props-box-ul{
 	position: relative;
@@ -503,36 +504,54 @@ a img{
 	display: inline-block;
 	padding-top:5px;
 }*/
-.room-contant-box{
+.room-tool-box{
 	display: none;
 	position: absolute;
-	top: 125px;
-	left: 145px;
 	padding: 10px;
 	border: 3px solid #bc1a18;
 }
-.room-contant-item{
+.room-tool-item{
 	float: left;
 	cursor: pointer;
 }
 
-.room-contant-item-avatar{
+.room-tool-item-avatar{
 	margin: 3px 6px;
 	padding: 3px;
 	width: 70px;
 	border: 2px solid #bc1a18;
 }
-.room-contant-item-btn{
+.room-tool-item-btn{
 	display: block;
-	width: 90px;
+	margin-left: 5px;
+	width: 80px;
 	height: 23px;
-	background-color:#D83B36;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 3px;
+	background-color: #FC1C46;
+	color: white;
 	border: 0;
 	cursor: pointer;
 }
+#room-contant-box{
+	top: 125px;
+	left: 145px;
+	z-index: 2;
+}
+#room-flower-box{
+	top: 325px;
+	left: 145px;
+	z-index: 2;
+}
+#room-egg-box{
+	top: 415px;
+	left: 145px;
+	z-index: 2;
+}
+
 .room-prop-item-light{
 	display: none;
-
 }
 /*.room-box-li-light{
 	position: absolute;
@@ -563,6 +582,7 @@ a img{
 	height: 491px;
 	background-image: url(../hexagonal.png);
 	margin-left: 200px;
+	z-index: 0;
 }
 .room-people{
 	position: absolute;
@@ -656,6 +676,29 @@ a img{
 	-webkit-border-radius:3px;
 	border-radius: 3px;
 }
+.room-person{
+	/*display: none;*/
+	background-color:#000;
+	position: absolute;
+	width: 1366px;
+	height: 768px;
+	top: 0;
+	left: 0;
+	filter:alpha(opacity=50);  
+  	-moz-opacity:0.5;  
+  	-khtml-opacity: 0.5;  
+  	opacity: 0.5; 
+}
+.room-person-box{
+	width: 600px;
+	height: 400px;
+	margin: 100px auto;
+	background-color:#FFF;
+	filter:alpha(opacity=100);  
+  	-moz-opacity:1;  
+  	-khtml-opacity: 1;  
+  	opacity: 1;
+}
 
 .success-all-screen{
 	background: #F9A5C7 url(../game-hall-bg.png) repeat-y scroll left;
@@ -671,6 +714,7 @@ a img{
 }
 .success-main{
 	position: relative;
+	display: none;
 	width: 1100px;
 	height: 450px;
 	margin: 100px auto auto auto;

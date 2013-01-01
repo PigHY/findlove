@@ -349,7 +349,7 @@
           <li class="room-prop-box-li">
             <a href="" onmouseover="objOver('choice-speak','choice-speak-light')" onmouseout="objOut('choice-speak','choice-speak-light')">
               <img class="room-prop-item" id="choice-speak" src="../choice-speak.png" alt="" />
-              <img class="room-prop-item-light" id="choice-speak-light" src="../choice-speak-light.png" alt="" onclick="Person.showPerson()" />
+              <img class="room-prop-item-light" id="choice-speak-light" src="../choice-speak-light.png" alt="" onclick="ToolBar.showContant()" />
             </a>
           </li>
           <!-- {{#if contact}}
@@ -373,13 +373,13 @@
           </li>
           {{/if}} -->
           <li class="room-prop-box-li">
-            <a href="" onmouseover="objOver('choice-flower','choice-flower-light')" onmouseout="objOut('choice-flower','choice-flower-light')">
+            <a href="" onmouseover="objOver('choice-flower','choice-flower-light')" onmouseout="objOut('choice-flower','choice-flower-light')" onclick="ToolBar.showFlower()">
               <img class="room-prop-item" id="choice-flower" src="../choice-flower.png" alt="" />
               <img class="room-prop-item-light" id="choice-flower-light" src="../choice-flower-light.png" alt="" />
             </a>
           </li>
           <li class="room-prop-box-li">
-            <a href="" onmouseover="objOver('choice-egg','choice-egg-light')" onmouseout="objOut('choice-egg','choice-egg-light')">
+            <a href="" onmouseover="objOver('choice-egg','choice-egg-light')" onmouseout="objOut('choice-egg','choice-egg-light')" onclick="ToolBar.showEgg()">
               <img class="room-prop-item" id="choice-egg" src="../choice-egg.png" alt="" />
               <img class="room-prop-item-light" id="choice-egg-light" src="../choice-egg-light.png" alt="" />
             </a>
@@ -391,22 +391,43 @@
             </a>
           </li>
         </ul>
-        <div class="room-contant-box" id="room-contant-box">
-          <!-- <div class="room-contant-item">
-            <img src="../avatar-male.png" alt="" class="room-contant-item-avatar">
-            <span class="room-contant-item-name">Storm</span>
-          </div> -->
+        <div class="room-tool-box" id="room-contant-box">
           {{#each person}}
-            <div class="room-contant-item">
+            <div class="room-tool-item">
               {{#if gender "male"}}
-              <img src="../avatar-male.png" alt="" class="room-contant-item-avatar">
+              <img src="../avatar-male.png" alt="" class="room-tool-item-avatar">
               {{else}}
-              <img src="../avatar-female.png" alt="" class="room-contant-item-avatar">
+              <img src="../avatar-female.png" alt="" class="room-tool-item-avatar">
               {{/if}}
-              <button class="room-contant-item-btn" value="{{_id}}">{{name}}</button>
+              <button class="room-tool-item-btn" value="{{_id}}" name="contant">{{name}}</button>
             </div>
           {{/each}}
         </div>
+        <div class="room-tool-box" id="room-flower-box">
+          {{#each person}}
+            <div class="room-tool-item">
+              {{#if gender "male"}}
+              <img src="../avatar-male.png" alt="" class="room-tool-item-avatar">
+              {{else}}
+              <img src="../avatar-female.png" alt="" class="room-tool-item-avatar">
+              {{/if}}
+              <button class="room-tool-item-btn" value="{{_id}}" name="flower">{{name}}</button>
+            </div>
+          {{/each}}
+        </div>
+        <div class="room-tool-box" id="room-egg-box">
+          {{#each person}}
+            <div class="room-tool-item">
+              {{#if gender "male"}}
+              <img src="../avatar-male.png" alt="" class="room-tool-item-avatar">
+              {{else}}
+              <img src="../avatar-female.png" alt="" class="room-tool-item-avatar">
+              {{/if}}
+              <button class="room-tool-item-btn" value="{{_id}}" name="egg">{{name}}</button>
+            </div>
+          {{/each}}
+        </div>
+
       </div>
       <div class="room-people-box">
         {{#each guest}}
@@ -455,6 +476,11 @@
       </div>
       {{/if}}
     </div> 
+  </div>
+  <div class="room-person">
+    <div class="room-person-box">
+      
+    </div>
   </div>
 </template>
 

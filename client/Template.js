@@ -220,6 +220,19 @@ Template.gameRoom.events({
     if(couple&&(couple.female_id == Session.get("user_id"))){
       Meteor.Router.to("/gameSuccess/"+couple.male_id+"&"+couple.female_id+"&"+Session.get("user_id"));
     }
+  },
+  "click .room-tool-item-btn" : function (evt){
+    evt.preventDefault();
+    var obj = evt.target;
+    if(obj.name == "contant"){
+      
+    }
+    else if(obj.name == "flower"){
+
+    }
+    else if(obj.name == "egg"){
+      
+    }
   }
 });
 
@@ -328,6 +341,7 @@ Template.gameRoom.choice = function(info){
   }
   return false;
 }
+
 //获取联系人
 /*Template.gameRoom.contact = function(){
   var room = Rooms.findOne({_id:Session.get("room_id")});
