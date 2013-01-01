@@ -514,7 +514,9 @@ a img{
 	float: left;
 	cursor: pointer;
 }
-
+.room-tool-item-name{
+	display: block;
+}
 .room-tool-item-avatar{
 	margin: 3px 6px;
 	padding: 3px;
@@ -677,27 +679,51 @@ a img{
 	border-radius: 3px;
 }
 .room-person{
-	/*display: none;*/
+	display: none;
 	background-color:#000;
 	position: absolute;
 	width: 1366px;
 	height: 768px;
 	top: 0;
 	left: 0;
-	filter:alpha(opacity=50);  
-  	-moz-opacity:0.5;  
-  	-khtml-opacity: 0.5;  
-  	opacity: 0.5; 
+	background-color:rgba(0,0,0,0.5);
+	z-index: 3;
 }
 .room-person-box{
-	width: 600px;
+	width: 500px;
 	height: 400px;
-	margin: 100px auto;
-	background-color:#FFF;
-	filter:alpha(opacity=100);  
-  	-moz-opacity:1;  
-  	-khtml-opacity: 1;  
-  	opacity: 1;
+	margin: 150px auto;
+	background-color:#FEC9CD;
+	border: 5px solid #EA4476;
+	border-radius: 15px;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+}
+.room-person-box-row{
+	height: 110px;
+	width: 450px;
+	margin: auto;
+	padding: 3px;
+	border-bottom: 2px dashed #BC1A18;
+}
+.room-person-avatar{
+	width: 100px;
+	height: 100px;
+	float: left;
+}
+.room-person-item-row{
+	width: 300px;
+	float: left;
+	margin: 20px auto auto 20px;
+}
+.room-person-box-exit{
+	width: 150px;
+	height: 25px;
+	color: #FFF;
+	background-color: #FC1C46;
+	border: 0;
+	margin: 15px auto auto 180px;
+	cursor: pointer;
 }
 
 .success-all-screen{

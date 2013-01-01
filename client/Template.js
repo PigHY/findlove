@@ -89,7 +89,7 @@ Template.gameHall.events({
     //some problem
     var user = Users.findOne({_id:Session.get("user_id")});
     if(user){
-      if(user.mobile_phone && user.name && user.real_name && user.standard && user.tel_phone){
+      if(!user.mobile_phone || !user.name || !user.real_name || !user.standard || !user.tel_phone){
         alert("请完善个人资料才进行游戏！");
         return false;
       }
@@ -110,8 +110,13 @@ Template.gameHall.events({
         return false;
       }
       //some problem
-      if(user.mobile_phone && user.name && user.real_name && user.standard && user.tel_phone){
+      if(!user.mobile_phone || !user.name || !user.real_name || !user.standard || !user.tel_phone){
         alert("请完善个人资料才进行游戏！");
+        console.log(user.mobile_phone);
+        console.log(user.name);
+        console.log(user.real_name);
+        console.log(user.standard);
+        console.log(user.tel_phone);
         return false;
       }
     }
@@ -225,7 +230,20 @@ Template.gameRoom.events({
     evt.preventDefault();
     var obj = evt.target;
     if(obj.name == "contant"){
-      
+      var userId = obj.value;
+      var user = Users.findOne({_id:userId});
+      if(user){
+        var box = document.getElementById("room-person");
+        box.style.display = "block";
+        var nickname = document.getElementById("room-person-nickname");
+        nickname.innerHTML = user.name;
+        var gender = document.getElementById("room-person-gender");
+        gender.innerHTML = user.gender;
+        var standard = document.getElementById("room-person-standard");
+        standard.innerHTML = user.standard;
+        var declaration = document.getElementById("room-person-declaration");
+        declaration.innerHTML = user.declaration;
+      }
     }
     else if(obj.name == "flower"){
 
@@ -233,6 +251,11 @@ Template.gameRoom.events({
     else if(obj.name == "egg"){
       
     }
+  },
+  "click .room-person-box-exit" : function (evt){
+    evt.preventDefault();
+    var box = document.getElementById("room-person");
+    box.style.display = "none";
   }
 });
 
