@@ -165,8 +165,6 @@ Template.gameRoom.events({
   },*/
   "click #choice-light-light" : function(evt){
     evt.preventDefault();
-    var obj = document.getElementById("choice-light");
-    /*记得修改这里*/
     var userId = Session.get("user_id");
     if(userId){
       Users.update({_id:userId},{$set:{light:false}});
@@ -364,7 +362,15 @@ Template.gameRoom.choice = function(info){
   }
   return false;
 }
-
+Template.gameRoom.light = function(){
+  var userId = Session.get("user_id");
+  if(userId){
+    var user = Users.findOne({_id:userId});
+    if(user)
+      return user.light;
+  }
+  return false;
+}
 //获取联系人
 /*Template.gameRoom.contact = function(){
   var room = Rooms.findOne({_id:Session.get("room_id")});

@@ -359,12 +359,23 @@
             <button class="room-light-btn room-contant">联系方式</button>
           </li>
           {{/if}} -->
-          <li class="room-prop-box-li">
-            <a href="" onmouseover="objOver('choice-light','choice-light-light')" onmouseout="objOut('choice-light','choice-light-light')">
-              <img class="room-prop-item" id="choice-light" src="../choice-light.png" alt="" />
-              <img class="room-prop-item-light" id="choice-light-light" src="../choice-light-light.png" alt="" />
-            </a>
-          </li>
+          {{#if checkGender "female"}}
+            {{#if light}}
+              <li class="room-prop-box-li">
+                <a href="" onmouseover="objOver('choice-light','choice-light-light')" onmouseout="objOut('choice-light','choice-light-light')">
+                  <img class="room-prop-item" id="choice-light" src="../choice-light.png" alt="" />
+                  <img class="room-prop-item-light" id="choice-light-light" src="../choice-light-light.png" alt="" />
+                </a>
+              </li>
+            {{else}}
+              <li class="room-prop-box-li">
+                <a href="" onmouseover="objOver('choice-light','choice-light-light')" onmouseout="objOut('choice-light','choice-light-light')">
+                  <img class="room-prop-item" id="choice-light" src="../choice-unlight.png" alt="" />
+                  <img class="room-prop-item-light" id="choice-light-light" src="../choice-unlight-light.png" alt="" />
+                </a>
+              </li>
+            {{/if}}
+          {{/if}}
 <!--           {{#if Showlight}}
           <li class="room-prop-box-li room-box-li-light" id="room-light-box">
             <span>是否灭灯:</span>
