@@ -362,12 +362,13 @@ Template.gameRoom.choice = function(info){
   }
   return false;
 }
-Template.gameRoom.light = function(){
+Template.gameRoom.checkLight = function(){
   var userId = Session.get("user_id");
   if(userId){
     var user = Users.findOne({_id:userId});
-    if(user)
+    if(user){
       return user.light;
+    }
   }
   return false;
 }
