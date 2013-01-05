@@ -109,6 +109,28 @@ var RoomHandler = {
 	findRoom : function (){
 		var result = Rooms.find({});
 		return result;
+	},
+	exitRoom : function (){
+		var room = Rooms.findOne({_id:Session.get("room_id")});
+	    var user = Users.findOne({_id:Session.get("user_id")});
+	    if(room){
+	      if(room.part == 0||room.part == 8){
+	        if(user.gender == "male"){
+	          Rooms.remove({_id:Session.get("room_id")});
+	        }
+	        Users.find({room_id:room._id,turn:{$gt:user.turn}}).forEach(function(item){
+	        	Users.update({_id:item._id},{$inc:{turn:-1}});
+	        });
+	        Users.update({_id:user._id},{$set:{room_id:null}});
+	        Rooms.update({_id:Session.get("room_id")},{$inc:{num:-1}});
+	      }
+	      else{
+	        alert("亲，请在白富美和高富帅面前注意礼貌，回到自己座位！");
+	        return false;
+	      }
+	    }
+	    Meteor.Router.to("/gameHall/"+user._id+"&"+user.name+"&"+user.gender);
+	    return false;
 	}
 };
 

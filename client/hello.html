@@ -375,14 +375,14 @@
                 </a>
               </li>
             {{/if}}
+          {{else}}
+            <li class="room-prop-box-li">
+              <a href="" onmouseover="objOver('choice-unlight','choice-unlight-light')" onmouseout="objOut('choice-unlight','choice-unlight-light')">
+                <img class="room-prop-item" id="choice-unlight" src="../choice-unlight.png" alt="" />
+                <img class="room-prop-item-light" id="choice-unlight-light" src="../choice-unlight-light.png" alt="" />
+              </a>
+            </li>
           {{/if}}
-<!--           {{#if Showlight}}
-          <li class="room-prop-box-li room-box-li-light" id="room-light-box">
-            <span>是否灭灯:</span>
-            <button class="room-light-btn room-unlight">是</button>
-            <button class="room-light-btn room-light">否</button>
-          </li>
-          {{/if}} -->
           <li class="room-prop-box-li">
             <a href="" onmouseover="objOver('choice-flower','choice-flower-light')" onmouseout="objOut('choice-flower','choice-flower-light')" onclick="ToolBar.showFlower()">
               <img class="room-prop-item" id="choice-flower" src="../choice-flower.png" alt="" />
@@ -402,11 +402,12 @@
             </a>
           </li>
         </ul>
-        <div class="room-tool-box" id="room-contant-box">
+        <div class="room-tool-bar" id="room-contant-box">
           {{#each person}}
             <div class="room-tool-item">
               {{#if gender "male"}}
               <img src="../avatar-male.png" alt="" class="room-tool-item-avatar">
+              <button class="room-tool-item-btn" value="{{_id}}" name="contant" style="display:none;">{{name}}</button>
               {{else}}
               <img src="../avatar-female.png" alt="" class="room-tool-item-avatar">
               {{/if}}
@@ -414,11 +415,12 @@
             </div>
           {{/each}}
         </div>
-        <div class="room-tool-box" id="room-flower-box">
-          {{#each person}}
+        <div class="room-tool-bar" id="room-flower-box">
+           {{#each person}}
             <div class="room-tool-item">
               {{#if gender "male"}}
               <img src="../avatar-male.png" alt="" class="room-tool-item-avatar">
+              <button class="room-tool-item-btn" value="{{_id}}" name="flower" style="display:none;">{{name}}</button>
               {{else}}
               <img src="../avatar-female.png" alt="" class="room-tool-item-avatar">
               {{/if}}
@@ -426,11 +428,12 @@
             </div>
           {{/each}}
         </div>
-        <div class="room-tool-box" id="room-egg-box">
-          {{#each person}}
+        <div class="room-tool-bar" id="room-egg-box">
+           {{#each person}}
             <div class="room-tool-item">
               {{#if gender "male"}}
               <img src="../avatar-male.png" alt="" class="room-tool-item-avatar">
+              <button class="room-tool-item-btn" value="{{_id}}" name="egg" style="display:none;">{{name}}</button>
               {{else}}
               <img src="../avatar-female.png" alt="" class="room-tool-item-avatar">
               {{/if}}
@@ -453,6 +456,7 @@
               </div>
             {{/if}}
             <div class="room-name">男嘉宾:{{roomOwner}}</div>
+            <div class="room-tool-tips">{{toolTips _id}}</div>
           </div>
           {{else}}
             <div class="room-people room-people-female{{turn}}">
@@ -476,9 +480,20 @@
               {{else}}
               <div class="room-result-tips">已灭灯</div>
               {{/if}}
+              <div class="room-tool-tips">{{toolTips _id}}</div>
             </div>
           {{/if}}
         {{/each}}
+        <div class="room-tool-box">
+          {{#each toolStatus}}
+            {{#if type "flower"}}
+              <img src="../choice-flower.png" alt="#" class="room-flower room-{{receiver_turn}}-flower" />
+            {{/if}}
+            {{#if type "egg"}}
+              <img src="../choice-egg.png" alt="#" class="room-egg room-{{receiver_turn}}-egg" />
+            {{/if}}
+          {{/each}}
+        </div>
       </div>
       {{#if dialog}}
       <div class="room-people-dialog" id="chart">
@@ -491,7 +506,7 @@
   <div class="room-person" id="room-person">
     <div class="room-person-box">
       <div class="room-person-box-row">
-        <img src="../avatar-male.png" alt="" class="room-person-avatar">
+        <img src="../avatar-male.png" alt="" class="room-person-avatar" id="room-person-avatar">
         <div class="room-person-item-row">
           <label for="">昵称:</label>
           <span id="room-person-nickname">Storm</span>

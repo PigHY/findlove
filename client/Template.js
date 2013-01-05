@@ -109,14 +109,8 @@ Template.gameHall.events({
         alert("亲，不要打断人家泡妞");
         return false;
       }
-      //some problem
       if(!user.mobile_phone || !user.name || !user.real_name || !user.standard || !user.tel_phone){
         alert("请完善个人资料才进行游戏！");
-        console.log(user.mobile_phone);
-        console.log(user.name);
-        console.log(user.real_name);
-        console.log(user.standard);
-        console.log(user.tel_phone);
         return false;
       }
     }
@@ -151,18 +145,6 @@ Template.gameRoom.events({
     var topic = document.getElementById("content");
     GameHandler.chart(topic.value);
   },
-  /*"click .room-unlight":function(evt){
-    evt.preventDefault();
-    var userId = Session.get("user_id");
-    if(userId){
-      Users.update({_id:userId},{$set:{light:false}});
-    }
-  },
-  "click .room-light":function(evt){
-    evt.preventDefault();
-    var obj = document.getElementById("room-light-box");
-    obj.style.display = "none";
-  },*/
   "click #choice-light-light" : function(evt){
     evt.preventDefault();
     var userId = Session.get("user_id");
@@ -194,22 +176,7 @@ Template.gameRoom.events({
   },
   "click .room-prop-box-light":function(evt){
     evt.preventDefault();
-    var room = Rooms.findOne({_id:Session.get("room_id")});
-    var user = Users.findOne({_id:Session.get("user_id")});
-    if(room){
-      if(room.part == 0||room.part == 8){
-        if(user.gender == "male"){
-          Rooms.remove({_id:Session.get("room_id")});
-        }
-        Users.update({_id:user._id},{$set:{room_id:null}});
-      }
-      else{
-        alert("亲，请在白富美和高富帅面前注意礼貌，回到自己座位！");
-        return false;
-      }
-    }
-    Meteor.Router.to("/gameHall/"+user._id+"&"+user.name+"&"+user.gender);
-    return false;
+    RoomHandler.exitRoom();
   },
   "click .room-contant":function(evt){
     evt.preventDefault();
@@ -233,6 +200,13 @@ Template.gameRoom.events({
       if(user){
         var box = document.getElementById("room-person");
         box.style.display = "block";
+        var avatar = document.getElementById("room-person-avatar");
+        if(user.gender == "male"){
+          avatar.src = "../avatar-male.png";
+        }
+        else{
+          avatar.src = "../avatar-female.png";
+        }
         var nickname = document.getElementById("room-person-nickname");
         nickname.innerHTML = user.name;
         var gender = document.getElementById("room-person-gender");
@@ -243,11 +217,28 @@ Template.gameRoom.events({
         declaration.innerHTML = user.declaration;
       }
     }
-    else if(obj.name == "flower"){
-
-    }
-    else if(obj.name == "egg"){
-      
+    else {
+      var sender = Users.findOne({_id:Session.get("user_id")});
+      var receiver = Users.findOne({_id:obj.value});
+      var tool = {
+        sender_id : sender._id,
+        receiver_id : receiver._id,
+        room_id : Session.get("room_id"),
+        type : obj.name,
+        receiver_turn : null,
+        sender_name : sender.name,
+        receiver_name : receiver.name
+      };
+      if(receiver.gender == "male"){
+        tool.receiver_turn = "male";
+      }
+      else{
+        tool.receiver_turn = "female"+receiver.turn;
+      }
+      var toolId = ToolStatus.insert(tool);
+      setTimeout(function(){
+        ToolStatus.remove({_id:toolId});
+      },2000);
     }
   },
   "click .room-person-box-exit" : function (evt){
@@ -390,15 +381,49 @@ Template.gameRoom.checkLight = function(){
   }
   return false;
 }*/
-//需要修改
 Template.gameRoom.person = function(){
   var roomId = Session.get("room_id");
   if(roomId){
-    return Users.find({room_id:roomId});
+    var users = Users.find({room_id:roomId});
+    return users;
   }
 }
 Template.gameRoom.gender = function(gender){
-  return this.gender === gender;
+  return this.gender == gender;
+}
+Template.gameRoom.toolStatus = function(){
+  var roomId = Session.get("room_id");
+  if(roomId){
+    var toolStatus = ToolStatus.find({room_id:roomId});
+    return toolStatus;
+  }
+  return false;
+}
+Template.gameRoom.type = function(type){
+  return this.type == type;
+}
+/*Template.gameRoom.toolCheck = function(userId){
+  var roomId = Session.get("room_id");
+  if(roomId){
+    var tool = ToolStatus.findOne({room_id:roomId,sender_id:userId});
+    if(tool)
+      return true;
+  }
+  return false;
+}*/
+Template.gameRoom.toolTips = function(userId){
+  var roomId = Session.get("room_id");
+  if(roomId){
+    var tool = ToolStatus.findOne({room_id:roomId,sender_id:userId});
+    if(tool){
+      if(tool.type == "flower")
+        return tool.sender_name + "向" + tool.receiver_name + "献上鲜花一朵";
+      else if(tool.type == "egg")
+        return tool.sender_name + "向" + tool.receiver_name + "扔了一只鸡蛋";
+      return tool;
+    }
+  }
+  return ;
 }
 
 Template.gameSuccess.events({

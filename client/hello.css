@@ -504,7 +504,7 @@ a img{
 	display: inline-block;
 	padding-top:5px;
 }*/
-.room-tool-box{
+.room-tool-bar{
 	display: none;
 	position: absolute;
 	padding: 10px;
@@ -622,6 +622,14 @@ a img{
 .room-result-tips{
 	text-align: center;
 }
+.room-tool-tips{
+	width: 250px;
+	position: absolute;
+	top: 155px;
+	left: -50px;
+	text-align: center;
+	color: #BB1819;
+}
 .room-people-male{
 	top:115px;
 	left:400px;
@@ -650,6 +658,40 @@ a img{
 	top:330px;
 	left:380px;
 }
+.room-flower,.room-egg{
+	position: absolute;
+	opacity: 0.8;
+	filter: alpha(opacity=80);
+}
+.room-male-flower,.room-male-egg{
+	top:185px;
+	left:425px;
+}
+.room-female1-flower,.room-female1-egg{
+	top:265px; 
+	left:35px;
+}
+.room-female2-flower,.room-female2-egg{
+	top:255px;
+	left:775px;
+}
+.room-female3-flower,.room-female3-egg{
+	top:85px;
+	left:725px;
+}
+.room-female4-flower,.room-female4-egg{
+	top:85px;
+	left:140px;
+}
+.room-female5-flower,.room-female5-egg{
+	top:-5px;
+	left:445px;
+}
+.room-female6-flower,.room-female6-egg{
+	top:390px;
+	left:405px;
+}
+
 .room-people-dialog{
 	width: 600px;
 	height: 40px;
