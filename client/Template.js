@@ -77,11 +77,25 @@ Template.gameHall.events({
   "click .personal-room-li":function (evt){
     evt.preventDefault();
     changeContent("personal");
+    var realName = document.getElementById("realName");
+    var telPhone = document.getElementById("telPhone");
+    var mobilePhone = document.getElementById("mobilePhone");
+    var standard = document.getElementById("standard");
+    var declaration = document.getElementById("declaration");
+    var user = Users.findOne({_id:Session.get("user_id")});
+    if(user){
+      realName.value = user.real_name;
+      telPhone.value = user.tel_phone;
+      mobilePhone.value = user.mobile_phone;
+      standard.value = user.standard;
+      declaration.value = user.declaration;
+    }
   },
   "submit .hall-personal-form":function(evt){
     evt.preventDefault();
     var form = evt.target;
     UserHandler.update(form);
+    alert("修改成功");
   },
   "submit .create-room" : function(evt){
     evt.preventDefault();

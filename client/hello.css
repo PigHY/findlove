@@ -431,10 +431,19 @@ a img{
 .hall-personal-row input{
 	width: 200px;
 	height: 25px;
-	border: 0;
+	padding: 1px;
+	border: 1px solid #FF5D97;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
 }
 .hall-personal-row textarea{
-	border: 0;
+	padding: 2px;
+	border: 1px solid #FF5D97;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	resize: none;
 }
 .hall-btn-row {
 	padding-left: 70px;
