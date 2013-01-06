@@ -110,11 +110,11 @@ var RoomHandler = {
 		var result = Rooms.find({});
 		return result;
 	},
-	exitRoom : function (){
+	exitRoom : function (msg){
 		var room = Rooms.findOne({_id:Session.get("room_id")});
 	    var user = Users.findOne({_id:Session.get("user_id")});
 	    if(room){
-	      if(room.part == 0||room.part == 8){
+	      if(room.part == 0||room.part == 8||msg =="success"){
 	        if(user.gender == "male"){
 	          Rooms.remove({_id:Session.get("room_id")});
 	        }

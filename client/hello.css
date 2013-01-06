@@ -573,10 +573,10 @@ a img{
 	border: 0;
 	cursor: pointer;
 }
-/*.room-contant{
+.room-contant{
 	margin: 3px 6px;
 	width: 70px;
-}*/
+}
 .room-people-box{
 	position: relative;
 	float: left;
@@ -782,7 +782,6 @@ a img{
 }
 .success-main{
 	position: relative;
-	display: none;
 	width: 1100px;
 	height: 450px;
 	margin: 100px auto auto auto;

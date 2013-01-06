@@ -176,7 +176,7 @@ Template.gameRoom.events({
   },
   "click .room-prop-box-light":function(evt){
     evt.preventDefault();
-    RoomHandler.exitRoom();
+    RoomHandler.exitRoom("null");
   },
   "click .room-contant":function(evt){
     evt.preventDefault();
@@ -364,7 +364,7 @@ Template.gameRoom.checkLight = function(){
   return false;
 }
 //获取联系人
-/*Template.gameRoom.contact = function(){
+Template.gameRoom.contact = function(){
   var room = Rooms.findOne({_id:Session.get("room_id")});
   if(room&&(room.part==7||room.part==8)){
     var maleId = Session.get("male_id");
@@ -380,7 +380,7 @@ Template.gameRoom.checkLight = function(){
     }
   }
   return false;
-}*/
+}
 Template.gameRoom.person = function(){
   var roomId = Session.get("room_id");
   if(roomId){
@@ -402,15 +402,6 @@ Template.gameRoom.toolStatus = function(){
 Template.gameRoom.type = function(type){
   return this.type == type;
 }
-/*Template.gameRoom.toolCheck = function(userId){
-  var roomId = Session.get("room_id");
-  if(roomId){
-    var tool = ToolStatus.findOne({room_id:roomId,sender_id:userId});
-    if(tool)
-      return true;
-  }
-  return false;
-}*/
 Template.gameRoom.toolTips = function(userId){
   var roomId = Session.get("room_id");
   if(roomId){
@@ -429,10 +420,7 @@ Template.gameRoom.toolTips = function(userId){
 Template.gameSuccess.events({
   "click .success-back-btn" : function (evt){
     evt.preventDefault();
-    var user = Users.findOne({_id:Session.get("user_id")});
-    if(user){
-      Meteor.Router.to("/gameHall/"+user._id+"&"+user.name+"&"+user.gender);
-    }
+    RoomHandler.exitRoom("success");
     return false;
   }
 });
