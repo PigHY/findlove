@@ -216,6 +216,7 @@ Template.gameRoom.events({
         var declaration = document.getElementById("room-person-declaration");
         declaration.innerHTML = user.declaration;
       }
+      ToolBar.showContant();
     }
     else {
       var sender = Users.findOne({_id:Session.get("user_id")});
@@ -239,6 +240,12 @@ Template.gameRoom.events({
       setTimeout(function(){
         ToolStatus.remove({_id:toolId});
       },2000);
+    }
+    if(obj.name == "flower"){
+      ToolBar.showFlower();
+    }
+    else if(obj.name == "egg"){
+      ToolBar.showEgg();
     }
   },
   "click .room-person-box-exit" : function (evt){
@@ -374,7 +381,7 @@ Template.gameRoom.contact = function(){
     }
     var userId = Session.get("user_id");
     var ownerId = room.owner.ownerId;
-    var couple = Couples.findOne({male_id:ownerId,female_id:userId});
+    var couple = Couples.findOne({male_id:ownerId,female_id:userId,room_id:room._id});
     if(couple){
       return true;
     }

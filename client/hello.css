@@ -541,17 +541,26 @@ a img{
 	left: 145px;
 	z-index: 2;
 }
-#room-flower-box{
+.room-female-flower-box{
 	top: 325px;
 	left: 145px;
 	z-index: 2;
 }
-#room-egg-box{
+.room-female-egg-box{
 	top: 415px;
 	left: 145px;
 	z-index: 2;
 }
-
+.room-male-flower-box{
+	top: 225px;
+	left: 145px;
+	z-index: 2;
+}
+.room-male-egg-box{
+	top: 315px;
+	left: 145px;
+	z-index: 2;
+}
 .room-prop-item-light{
 	display: none;
 }

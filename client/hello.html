@@ -381,13 +381,6 @@
                 </a>
               </li>
             {{/if}}
-          {{else}}
-            <li class="room-prop-box-li">
-              <a href="" onmouseover="objOver('choice-unlight','choice-unlight-light')" onmouseout="objOut('choice-unlight','choice-unlight-light')">
-                <img class="room-prop-item" id="choice-unlight" src="../choice-unlight.png" alt="" />
-                <img class="room-prop-item-light" id="choice-unlight-light" src="../choice-unlight-light.png" alt="" />
-              </a>
-            </li>
           {{/if}}
           <li class="room-prop-box-li">
             <a href="" onmouseover="objOver('choice-flower','choice-flower-light')" onmouseout="objOut('choice-flower','choice-flower-light')" onclick="ToolBar.showFlower()">
@@ -421,7 +414,8 @@
             </div>
           {{/each}}
         </div>
-        <div class="room-tool-bar" id="room-flower-box">
+        {{#if checkGender "female"}}
+        <div class="room-tool-bar room-female-flower-box" id="room-flower-box">
            {{#each person}}
             <div class="room-tool-item">
               {{#if gender "male"}}
@@ -434,7 +428,7 @@
             </div>
           {{/each}}
         </div>
-        <div class="room-tool-bar" id="room-egg-box">
+        <div class="room-tool-bar room-female-egg-box" id="room-egg-box">
            {{#each person}}
             <div class="room-tool-item">
               {{#if gender "male"}}
@@ -447,7 +441,34 @@
             </div>
           {{/each}}
         </div>
-
+        {{else}}
+        <div class="room-tool-bar room-male-flower-box" id="room-flower-box">
+           {{#each person}}
+            <div class="room-tool-item">
+              {{#if gender "male"}}
+              <img src="../avatar-male.png" alt="" class="room-tool-item-avatar">
+              <button class="room-tool-item-btn" value="{{_id}}" name="flower" style="display:none;">{{name}}</button>
+              {{else}}
+              <img src="../avatar-female.png" alt="" class="room-tool-item-avatar">
+              {{/if}}
+              <button class="room-tool-item-btn" value="{{_id}}" name="flower">{{name}}</button>
+            </div>
+          {{/each}}
+        </div>
+        <div class="room-tool-bar room-male-egg-box" id="room-egg-box">
+           {{#each person}}
+            <div class="room-tool-item">
+              {{#if gender "male"}}
+              <img src="../avatar-male.png" alt="" class="room-tool-item-avatar">
+              <button class="room-tool-item-btn" value="{{_id}}" name="egg" style="display:none;">{{name}}</button>
+              {{else}}
+              <img src="../avatar-female.png" alt="" class="room-tool-item-avatar">
+              {{/if}}
+              <button class="room-tool-item-btn" value="{{_id}}" name="egg">{{name}}</button>
+            </div>
+          {{/each}}
+        </div>
+        {{/if}}
       </div>
       <div class="room-people-box">
         {{#each guest}}
