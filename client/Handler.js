@@ -114,7 +114,7 @@ var RoomHandler = {
 		var room = Rooms.findOne({_id:Session.get("room_id")});
 	    var user = Users.findOne({_id:Session.get("user_id")});
 	    if(room){
-	      if(room.part == 0||room.part == 8||msg =="success"){
+	      if(room.part == 0||room.part == 8||room.part == 9||msg =="success"){
 	        if(user.gender == "male"){
 	          Rooms.remove({_id:Session.get("room_id")});
 	        }
@@ -159,6 +159,11 @@ var GameHandler = {
 
 		//2:light(15S)
 		setTimeout(function(){
+			if(GameHandler.checkLight() == false){
+				alert("gameover");
+				Rooms.update({_id:Session.get("room_id")},{$set:{part:9}});
+				return ;
+			}
 			Rooms.update({_id:Session.get("room_id")},{$set:{speaker:null},$inc:{part:1}});
 		},this.time);
 		this.time+=15000;
@@ -174,6 +179,10 @@ var GameHandler = {
 			}
 		});
 		setTimeout(function(){
+			if(GameHandler.checkLight() == false){
+				Rooms.update({_id:Session.get("room_id")},{$set:{part:9}});
+				return ;
+			}
 			Rooms.update({_id:room._id},{$inc:{part:1}});
 		},this.time);
 		for(var i=0;i<queue.length;i++){
@@ -186,27 +195,44 @@ var GameHandler = {
 
 		//4:light(5S)
 		setTimeout(function(){
+			if(GameHandler.checkLight() == false){
+				Rooms.update({_id:Session.get("room_id")},{$set:{part:9}});
+				return ;
+			}
 			Rooms.update({_id:Session.get("room_id")},{$set:{speaker:null},$inc:{part:1}});
 		},this.time);
 		this.time+=5000;
 
 		//5: Thorough Understand
 		setTimeout(function(){
+			if(GameHandler.checkLight() == false){
+				Rooms.update({_id:Session.get("room_id")},{$set:{part:9}});
+				return ;
+			}
 			Rooms.update({_id:room._id},{$set:{speaker:room.owner.ownerId},$inc:{part:1}});
 		},this.time);
 		this.time+=20000;
 
 		//6 light
 		setTimeout(function(){
+			if(GameHandler.checkLight() == false){
+				Rooms.update({_id:Session.get("room_id")},{$set:{part:9}});
+				return ;
+			}
 			Rooms.update({_id:Session.get("room_id")},{$set:{speaker:null},$inc:{part:1}});
 		},this.time);
 		this.time+=5000;
 
 		//7 choice
 		setTimeout(function(){
+			if(GameHandler.checkLight() == false){
+				Rooms.update({_id:Session.get("room_id")},{$set:{part:9}});
+				return ;
+			}
 			Rooms.update({_id:Session.get("room_id")},{$inc:{part:1}});
 		},this.time);
 		this.time+=10000;
+
 
 		//8 exit
 		setTimeout(function(){
@@ -236,17 +262,16 @@ var GameHandler = {
 			Users.update({_id:room.speaker},{$set:{comment:topic,flag:false}});
 		},2000);
 	},
-	maleTalk : function(){
-
-	},
-	turnTalk : function(){
-
-	},
-	light : function(){
-
-	},
-	choice : function(){
-
-	},
-	
+	checkLight : function(){
+		var room = Rooms.findOne({_id:Session.get("room_id")});
+		if(room){
+			Users.find({room_id:room._id}).forEach(function(user){
+				if(user.gender == "female" &&user.light == true){
+					console.log(user);
+					return true;
+				}
+			});
+		}
+		return false;
+	}
 };
