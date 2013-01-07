@@ -153,15 +153,15 @@ var GameHandler = {
 		var room = Rooms.findOne({_id:Session.get("room_id")});
 		Rooms.update({_id:room._id},{$set:{speaker:null}});
 
-		//1: male Self-introduction(10S)
+		//1: male Self-introduction(20S)
 		Rooms.update({_id:room._id},{$set:{speaker:room.owner.ownerId},$inc:{part:1}});
-		this.time+=10000;
+		this.time+=20000;
 
-		//2:light(5S)
+		//2:light(15S)
 		setTimeout(function(){
 			Rooms.update({_id:Session.get("room_id")},{$set:{speaker:null},$inc:{part:1}});
 		},this.time);
-		this.time+=5000;
+		this.time+=15000;
 
 		//3: Turns dialogue
 		var queue = [];
@@ -194,7 +194,7 @@ var GameHandler = {
 		setTimeout(function(){
 			Rooms.update({_id:room._id},{$set:{speaker:room.owner.ownerId},$inc:{part:1}});
 		},this.time);
-		this.time+=10000;
+		this.time+=20000;
 
 		//6 light
 		setTimeout(function(){

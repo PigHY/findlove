@@ -436,6 +436,7 @@ a img{
 	border-radius: 4px;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
+	color: #FC1C46;
 }
 .hall-personal-row textarea{
 	padding: 2px;
@@ -443,6 +444,7 @@ a img{
 	border-radius: 4px;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
+	color: #FC1C46;
 	resize: none;
 }
 .hall-btn-row {

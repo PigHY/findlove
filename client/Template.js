@@ -153,7 +153,13 @@ Template.gameHall.checkGender = function(gender){
 Template.gameRoom.events({
   "click .room-begin-game":function(evt){
     evt.preventDefault();
-    GameHandler.begin();
+    var room = Rooms.findOne({_id:Session.get("room_id")});
+    if(room){
+      if(room.num>0)
+        GameHandler.begin();
+      else
+        alert("高富帅，请稍等！白富美们还没进来！");
+    }
   },
   "click .room-dialog-btn":function(evt){
     var topic = document.getElementById("content");
