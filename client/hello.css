@@ -279,7 +279,8 @@ a img{
 .hall-content{
 	float: left;
 	width: 1050px;
-	height: 585px;
+	height: 540px;
+	overflow: auto;
 }
 .hall-nav-item{
 	display: none;
@@ -361,8 +362,17 @@ a img{
 	padding: 50px 20px;
 }
 .hall-right-block{
-	float: left;
+	margin-left: 590px;
+	min-height: 480px;
+	height: auto!important;
+	height: 480px;
 	padding: 10px;
+}
+.hall-bottom-block{
+	border-top: 5px dashed #F61948;
+}
+.hall-bottom-block p {
+	text-indent: 30px;
 }
 .hall-rule-font{
 	color: #f61948;
@@ -370,6 +380,9 @@ a img{
 }
 .hall-rule-title{
 	padding:5px 20px;
+}
+.hall-private-title{
+	text-align: center;
 }
 .hall-rule-tips{
 	padding: 5px;

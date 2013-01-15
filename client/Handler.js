@@ -160,11 +160,11 @@ var GameHandler = {
 		//2:light(15S)
 		setTimeout(function(){
 			if(GameHandler.checkLight() == false){
-				alert("gameover");
 				Rooms.update({_id:Session.get("room_id")},{$set:{part:9}});
 				return ;
 			}
-			Rooms.update({_id:Session.get("room_id")},{$set:{speaker:null},$inc:{part:1}});
+			else
+				Rooms.update({_id:Session.get("room_id")},{$set:{speaker:null},$inc:{part:1}});
 		},this.time);
 		this.time+=15000;
 
@@ -183,7 +183,8 @@ var GameHandler = {
 				Rooms.update({_id:Session.get("room_id")},{$set:{part:9}});
 				return ;
 			}
-			Rooms.update({_id:room._id},{$inc:{part:1}});
+			else
+				Rooms.update({_id:room._id},{$inc:{part:1}});
 		},this.time);
 		for(var i=0;i<queue.length;i++){
 			setTimeout(function(){
@@ -199,7 +200,8 @@ var GameHandler = {
 				Rooms.update({_id:Session.get("room_id")},{$set:{part:9}});
 				return ;
 			}
-			Rooms.update({_id:Session.get("room_id")},{$set:{speaker:null},$inc:{part:1}});
+			else
+				Rooms.update({_id:Session.get("room_id")},{$set:{speaker:null},$inc:{part:1}});
 		},this.time);
 		this.time+=5000;
 
@@ -209,7 +211,8 @@ var GameHandler = {
 				Rooms.update({_id:Session.get("room_id")},{$set:{part:9}});
 				return ;
 			}
-			Rooms.update({_id:room._id},{$set:{speaker:room.owner.ownerId},$inc:{part:1}});
+			else
+				Rooms.update({_id:room._id},{$set:{speaker:room.owner.ownerId},$inc:{part:1}});
 		},this.time);
 		this.time+=20000;
 
@@ -219,7 +222,8 @@ var GameHandler = {
 				Rooms.update({_id:Session.get("room_id")},{$set:{part:9}});
 				return ;
 			}
-			Rooms.update({_id:Session.get("room_id")},{$set:{speaker:null},$inc:{part:1}});
+			else
+				Rooms.update({_id:Session.get("room_id")},{$set:{speaker:null},$inc:{part:1}});
 		},this.time);
 		this.time+=5000;
 
@@ -229,14 +233,20 @@ var GameHandler = {
 				Rooms.update({_id:Session.get("room_id")},{$set:{part:9}});
 				return ;
 			}
-			Rooms.update({_id:Session.get("room_id")},{$inc:{part:1}});
+			else
+				Rooms.update({_id:Session.get("room_id")},{$inc:{part:1}});
 		},this.time);
 		this.time+=10000;
 
 
 		//8 exit
 		setTimeout(function(){
-			Rooms.update({_id:Session.get("room_id")},{$inc:{part:1}});
+			if(GameHandler.checkLight() == false){
+				Rooms.update({_id:Session.get("room_id")},{$set:{part:9}});
+				return ;
+			}
+			else
+				Rooms.update({_id:Session.get("room_id")},{$inc:{part:1}});
 		},this.time);
 	},
 	chart : function(topic){
@@ -257,7 +267,6 @@ var GameHandler = {
 	femaleChart : function(topic){
 		var room = Rooms.findOne({_id:Session.get("room_id")});
 		Users.update({_id:room.speaker},{$set:{comment:topic,flag:true}});
-		/*console.log(Users.findOne({_id:room.speaker}));*/
 		setTimeout(function(){
 			Users.update({_id:room.speaker},{$set:{comment:topic,flag:false}});
 		},2000);
@@ -265,12 +274,15 @@ var GameHandler = {
 	checkLight : function(){
 		var room = Rooms.findOne({_id:Session.get("room_id")});
 		if(room){
+			var mark = 0;
 			Users.find({room_id:room._id}).forEach(function(user){
-				if(user.gender == "female" &&user.light == true){
-					console.log(user);
+				if(user.gender == "female" && user.light == true){
+					mark = 1;
 					return true;
 				}
 			});
+			if(mark == 1)
+				return true;
 		}
 		return false;
 	}
